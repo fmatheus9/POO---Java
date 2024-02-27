@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) {
+    Aluno a0 = new Aluno();
     Aluno a1 = new Aluno(24639,"Matheus",19, 9.4f,8.8f);
     System.out.println("Nota Final: "+ a1.notaFinal());
     a1.dadosAluno();
@@ -16,7 +17,9 @@ public class Aluno {
     private float p2;
 
     //MÉTODOS ESPECIAIS
-
+     public Aluno(){
+     }
+    
     public Aluno(int numeroAluno, String nome, int idade, float p1, float p2) {
         this.numeroAluno = numeroAluno;
         this.nome = nome;
