@@ -1,6 +1,7 @@
 //MAIN
 public class Main {
     public static void main(String[] args) {
+    Produto p0 = new Produto();
     Produto p1 = new Produto(11,100,"Sabonete Dove", 10f);
     p1.comprar(10);
     p1.vender(9);
