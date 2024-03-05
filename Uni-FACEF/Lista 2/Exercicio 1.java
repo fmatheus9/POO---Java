@@ -11,6 +11,7 @@ public class Main {
 }
 //Classe
 
+
 public class Cliente {
 
     private String numeroConta;
@@ -33,10 +34,8 @@ public class Cliente {
     }
 
     public void setNumeroConta(String numeroConta) {
-        if (numeroConta.length() == 8 ){
-            if (numeroConta.indexOf("-") == 6) {
-                this.numeroConta = numeroConta;
-            }
+        if (numeroConta.length() == 8 && numeroConta.indexOf("-") == 6){
+            this.numeroConta = numeroConta;
         }
         else {
             this.numeroConta = "Valor inválido";
@@ -48,10 +47,8 @@ public class Cliente {
     }
 
     public void setNumeroAgencia(String numeroAgencia) {
-        if (numeroAgencia.length() == 6){
-            if(numeroAgencia.indexOf("-") == 4){
-                this.numeroAgencia = numeroAgencia;
-            }
+        if (numeroAgencia.length() == 6 && numeroAgencia.indexOf("-") == 4){
+            this.numeroAgencia = numeroAgencia;
         }
         else {
             this.numeroAgencia = "Valor inválido";
@@ -86,8 +83,11 @@ public class Cliente {
     }
 
     public void realizarDeposito(float valor){
-        if (this.numeroConta == "Valor inválido" || this.numeroAgencia == "Valor inválido"){
-            System.out.println("Algum campo em pendência. Impossivel realizar o depósito.");
+        if (this.numeroConta == "Valor inválido"){
+            System.out.println("Informe um número de conta válido. Impossivel realizar o depósito.");
+        }
+        else if(this.numeroAgencia == "Valor inválido"){
+            System.out.println("Informe um número de agência válido. Impossivel realizar o depósito.");
         }
         else {
             this.setSaldo(this.getSaldo() + valor);
@@ -95,8 +95,11 @@ public class Cliente {
 
     }
     public void realizarSaque(float valor){
-        if (this.numeroConta == "Valor inválido" || this.numeroAgencia == "Valor inválido"){
-            System.out.println("Algum campo em pendência. Impossivel realizar o saque.");
+        if (this.numeroConta == "Valor inválido"){
+            System.out.println("Informe um número de conta válido. Impossivel realizar o saque.");
+        }
+        else if(this.numeroAgencia == "Valor inválido"){
+            System.out.println("Informe um número de agência válido. Impossivel realizar o saque.");
         }
         else {
             if (valor > this.getSaldo()) {
@@ -117,6 +120,7 @@ public class Cliente {
                 '}';
     }
 }
+
 
 //d)	Tente acessar as variáveis de instância da classe Cliente sem os métodos get e set. O que acontece? 
 //RESPOSTA: os atributos ficam inacessíveis.
