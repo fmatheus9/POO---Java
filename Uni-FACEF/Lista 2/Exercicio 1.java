@@ -11,7 +11,6 @@ public class Main {
 }
 //Classe
 
-
 public class Cliente {
 
     private String numeroConta;
@@ -78,7 +77,7 @@ public class Cliente {
             this.saldo = saldo;
         }
         else {
-            System.out.println("Valor do saldo inválido. Reinsira o valor do saldo. ");
+            System.out.println("Valor do saldo negativo.");
         }
     }
 
@@ -102,11 +101,7 @@ public class Cliente {
             System.out.println("Informe um número de agência válido. Impossivel realizar o saque.");
         }
         else {
-            if (valor > this.getSaldo()) {
-                System.out.println("Valor maior que o saldo na conta");
-            } else {
-                this.setSaldo(this.getSaldo() - valor);
-            }
+            this.setSaldo(this.getSaldo() - valor);
         }
     }
 
@@ -120,7 +115,6 @@ public class Cliente {
                 '}';
     }
 }
-
 
 //d)	Tente acessar as variáveis de instância da classe Cliente sem os métodos get e set. O que acontece? 
 //RESPOSTA: os atributos ficam inacessíveis.
