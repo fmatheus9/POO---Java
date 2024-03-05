@@ -31,7 +31,12 @@ public class Aluno {
     }
 
     public void setNumeroAluno(int numeroAluno) {
-        this.numeroAluno = numeroAluno;
+        if (String.valueOf(numeroAluno).length() == 6){
+            this.numeroAluno = numeroAluno;
+        }
+        else {
+            System.out.println("Valor do númeroAluno inválido");
+        }
     }
 
     public String getNome() {
@@ -107,3 +112,4 @@ public class Aluno {
         }
     }
 }
+
