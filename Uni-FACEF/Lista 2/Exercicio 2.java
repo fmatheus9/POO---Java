@@ -113,3 +113,5 @@ public class Aluno {
     }
 }
 
+//d)	Tente acessar as variáveis de instância da classe Cliente sem os métodos get e set. O que acontece? 
+//RESPOSTA: os atributos ficam inacessíveis.
