@@ -1,6 +1,14 @@
 public class Main {
     public static void main(String[] args) {
-
+        // crie três produtos, prod1, prod2 e prod3, com valores
+        // quaisquer para suas variáveis
+        // crie dois carrinhos de compra
+        // o primeiro carrinho deve conter os itens de carrinho
+        // relacionados aos produtos prod1 e prod2
+        // o segundo carrinho deve conter os itens de carrinho
+        // relacionados aos produtos prod2 e prod3
+        // os valores dos itens de carrinho e dos carrinhos podem
+        // ter valores quaisquer
     }
 }
 
