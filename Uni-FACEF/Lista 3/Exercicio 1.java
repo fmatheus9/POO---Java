@@ -9,6 +9,20 @@ public class Main {
         // relacionados aos produtos prod2 e prod3
         // os valores dos itens de carrinho e dos carrinhos podem
         // ter valores quaisquer
+
+        Product prod1 = new Product(1,6.5f,"Bolacha");
+        Product prod2 = new Product(2, 2.5f, "Chiclete");
+        Product prod3 = new Product(3,12f,"Chocolate");
+
+        ShoppingCart carrinho1 = new ShoppingCart(100, 0f);
+        carrinho1.addCarItem(10,10, prod1);
+        carrinho1.addCarItem(11,5, prod2);
+        System.out.println(carrinho1.toString());
+
+        ShoppingCart carrinho2 = new ShoppingCart(200,0f);
+        carrinho2.addCarItem(13,10, prod3);
+        carrinho2.addCarItem(11,5, prod2);
+        System.out.println(carrinho2.toString());
     }
 }
 
@@ -68,8 +82,6 @@ public class Product {
 
 
 
-
-
 //AGRAGAÇÃO ENTRE A CLASSE CARITEM E PRODUCT
 //CLASSE TODO
 //COMPOSIÇÃO ENTRE SHOPPING CART E CAR ITEM
@@ -115,7 +127,7 @@ public class CarItem {
     @Override
     //PERGUNTA DE PROVA = O TOSTRING DESSA CLASSE, NA PARTE PRODUCT MOSTRA O TOSTRING DA CLASSE PRODUCT
     public String toString() {
-        return "CarItem{" +
+        return "\nCarItem{" +
                 "id=" + id +
                 ", quantidade=" + quantidade +
                 ", product=" + product +
@@ -123,8 +135,6 @@ public class CarItem {
     }
 
 }
-
-
 
 
 
@@ -154,6 +164,7 @@ public class ShoppingCart {
     public ShoppingCart(int id, float totalPrice) {
         this.id = id;
         this.totalPrice = totalPrice;
+        this.carItem = new ArrayList<CarItem>();
     }
 
     public int getId() {
@@ -180,15 +191,23 @@ public class ShoppingCart {
         this.carItem = carItem;
     }
 
-    //MÉTODO PARA ADICIONAR UM CARITEM NO VETOR
-    //CARACTERIZA UMA COMPOSIÇÃO POIS O CARITEM É CRIADO EM FUNÇÃO DO SHOPPINGCART
-    public void addCarrinho(int id, int quantidade, Product product){
-        //cria um CarItem e adiciona dentro do vetor
-        this.carItem.add(new CarItem(id,quantidade,product));
+    // método para adicionar um CarItem no vetor
+    // caracteriza uma composição, pois CarItem é criado
+    // em função do ShoppingCart
+    public void addCarItem(int id, int quantity, Product product){
+        // cria um CarItem e adiciona este no vetor
+        this.carItem.add(new CarItem(id, quantity, product));
+        calculateTotalPrice();
+    }
+    public void calculateTotalPrice(){
+        this.totalPrice = 0;
+        for (CarItem Item : carItem){
+            this.totalPrice += Item.getQuantidade() * Item.getProduct().getPrice();
+        }
     }
 
     @Override
-    public String toString() { //O TOSRING 'CARITEM' É UMA LISTA, VAI MOSTRAR TODOS OS 'CARITEM's'
+    public String toString() { //O TOSRING 'shopingcart' É UMA LISTA, VAI MOSTRAR TODOS OS 'CARITEM's'
         return "ShoppingCart{" +
                 "id=" + id +
                 ", totalPrice=" + totalPrice +
@@ -196,4 +215,3 @@ public class ShoppingCart {
                 '}';
     }
 }
-
