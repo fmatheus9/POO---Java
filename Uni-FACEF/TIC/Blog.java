@@ -14,8 +14,8 @@ public class Blog {
     public void setNoticias(List<Noticia> noticias) {
         this.noticias = noticias;
     }
-    public void createPost(String titulo, String descricao, String link, String imageUrl){
-        this.noticias.add(new Noticia(titulo, descricao, link, imageUrl));
+    public void createPost(String titulo, String descricao, String link, String imageUrl, Funcionario funcionario){
+        this.noticias.add(new Noticia(titulo, descricao, link, imageUrl, funcionario));
     }
 
     @Override

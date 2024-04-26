@@ -46,4 +46,5 @@ public class Beneficiario extends Pessoa{
     public void setImagesUrl(String imagesUrl) {
         this.imagesUrl = imagesUrl;
     }
+    
 }
