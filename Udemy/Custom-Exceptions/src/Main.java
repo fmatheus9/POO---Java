@@ -1,4 +1,5 @@
 import model.entiites.Reservation;
+import model.excepions.DomainException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,22 +7,19 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        //ENTRADA DE DADOS
-        System.out.print("Room number: ");
-        int number = scanner.nextInt();
-        System.out.print("Checkin date (dd/mm/yyyy): ");
-        Date checkin = sdf.parse(scanner.next());
-        System.out.print("checkout date (dd/mm/yyyy): ");
-        Date checkout = sdf.parse(scanner.next());
+        try {
+            //ENTRADA DE DADOS
+            System.out.print("Room number: ");
+            int number = scanner.nextInt();
+            System.out.print("Checkin date (dd/mm/yyyy): ");
+            Date checkin = sdf.parse(scanner.next());
+            System.out.print("checkout date (dd/mm/yyyy): ");
+            Date checkout = sdf.parse(scanner.next());
 
-        if (!checkout.after(checkin)){
-            System.out.println("Error in reservation: Checkout date must be after checkin date.");
-        }
-        else {
             Reservation reservation = new Reservation(number, checkin, checkout);
             System.out.println("Reservation: " + reservation.toString());
 
@@ -34,16 +32,16 @@ public class Main {
             System.out.print("checkout date (dd/mm/yyyy): ");
             checkout = sdf.parse(scanner.next());
 
-            String error = reservation.updateDates(checkin, checkout);
-            if (error!= null){
-                System.out.println(error);
-            }
-            else {
-                System.out.println("Reservation: " + reservation.toString());
-            }
-
-
+            reservation.updateDates(checkin, checkout);
+            System.out.println("Reservation: " + reservation.toString());
         }
+        catch (ParseException e){
+            System.out.println("Invalid date format.");
+        }
+        catch (DomainException e){
+            System.out.println(e.getMessage());
+        }
+
 
         scanner.close();
     }
