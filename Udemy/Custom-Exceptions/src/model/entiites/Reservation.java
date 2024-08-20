@@ -3,7 +3,6 @@ package model.entiites;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.SimpleFormatter;
 
 public class Reservation {
     private Integer roomNumber;
@@ -42,9 +41,17 @@ public class Reservation {
         return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
-    public void updateDates(Date checkin, Date checkout){
+    public String updateDates(Date checkin, Date checkout){
+        Date now = new Date();
+        if (checkin.before(now) || checkout.before(now)){
+            return "Error in reservation: Reservation dates for update must be future dates.";
+        }
+        if (!checkout.after(checkin)){
+            return "Error in reservation: Checkout date must be after checkin date.";
+        }
         this.checkin = checkin;
         this.checkout = checkout;
+        return null;
     }
 
     @Override
